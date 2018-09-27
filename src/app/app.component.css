@@ -1,0 +1,6 @@
+td {
+    background-color: aquamarine !important;
+}
+.dx-datagrid-content .dx-datagrid-table .dx-row > td:first-child, .dx-datagrid-content .dx-datagrid-table .dx-row > tr > td:first-child {
+    background-color: brown !important;
+}
