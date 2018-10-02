@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 import { NgModule, enableProdMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,8 +19,15 @@ if(!/localhost/.test(document.location.host)) {
   providers: [DevExtremeServiceService]
 })
 
-export class Devextreme1Component {
+export class Devextreme1Component implements OnInit {
   employees: Employee[];
+
+  @Input() articolo: string;
+  @Output() titleEmitter = new EventEmitter<string>();
+
+  ngOnInit() {
+    this.titleEmitter.emit("Dato inviato in Output");
+  }
 
   constructor(DevExtremeServiceService: DevExtremeServiceService) {
       this.employees = DevExtremeServiceService.getEmployees();

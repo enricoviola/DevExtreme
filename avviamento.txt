@@ -1,0 +1,10 @@
+Avvia il server Test per catturare il JSON di esempio laddove trovi il Json formattato come indica questo plugin: https://www.npmjs.com/package/json-server
+json-server --watch db.json
+
+Avvia il server di test per Angular dalla root del progetto
+ng serve --host 0.0.0.0 --port 3030
+
+Per installare Angular-Material design: 
+	npm install --save @angular/material @angular/cdk @angular/animations
+	ng add @angular/material
+	Le istruzioni del sito sono scarse, presenta gli esempi ma vanno installate altre librerie, quindi ogni volta è da capire dagli errori cosa bisogna installare o meno.

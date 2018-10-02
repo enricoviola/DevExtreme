@@ -1,9 +1,126 @@
-<app-devextreme1>Carica Componente DevExtreme TreeList</app-devextreme1>
+
+<dx-data-grid id="gridContainer"
+    #griglia
+    [dataSource]="datiDaJsonTyl"
+    keyExpr="ID"
+
+    [hoverStateEnabled]="true"
+
+    [masterDetail]="{ enabled: true, template: 'dettaglio' }"
+
+    [showColumnLines]="false"
+    [showRowLines]="true"
+    [showBorders]="true"
+    [rowAlternationEnabled]="true">
+    <dxi-column dataField="ID" dataType="number"></dxi-column>
+    <dxi-column dataField="Name"></dxi-column>
+    <dxi-column dataField="Surname"></dxi-column>
+    <dxi-column dataField="Email[0].Address" [width]="350" caption="eMail"></dxi-column>
+    
+
+    <div *dxTemplate="let person of 'dettaglio'">
+        <dx-data-grid
+            [dataSource]="person.data.PersonalInfo"
+            [showBorders]="true">
+            <dxi-column dataField="IT[0].Type" caption="Ruolo"></dxi-column>
+            <dxi-column dataField="IT[0].Note" caption="Note"></dxi-column>
+
+            <!--
+                <dxi-column dataField="PersonalInfo.IT[0].Type" caption="Tipo Ruolo"></dxi-column>
+            <dxi-column dataField="Roles.IT[0].Role" caption="Ruolo"></dxi-column>
+            <dxi-column dataField="Roles.IT[0].Relationship" caption="Relazione"></dxi-column>
+            <dxi-column dataField="Roles.PartyInRelationship" caption="Azienda"></dxi-column>
+            <dxi-column dataField="Roles.Represents" caption="Ruolo Azienda"></dxi-column>
+            <dxi-column dataField="PersonalInfo.IT[0].Note" caption="Note"></dxi-column>
+            -->
+        </dx-data-grid>
+        <dx-data-grid
+            [dataSource]="person.data.Roles"
+            [showBorders]="true">
+            <dxi-column dataField="IT.Role" caption="Ruolo"></dxi-column>
+        </dx-data-grid>
+        <dx-data-grid
+            [dataSource]="person.data"
+            [showBorders]="true">
+            <dxi-column dataField="Name" caption="Nome"></dxi-column>
+        </dx-data-grid>
+        <p>1: {{person.data.Name}}</p>
+        <ul>
+            <li *ngFor="let personInfo of person.data.PersonalInfo"> 
+                {{ personInfo.IT[0].Type }}
+            </li>
+        </ul>
+        <ul>
+            <li *ngFor="let personRoles of person.data.Roles"> 
+                    {{ personRoles.PartyInRelationship }}
+                    {{ personRoles.IT.Role }}
+            </li>
+        </ul>
+        <ul>
+            <li *ngFor="let personRoles of objectValues(person.data)"> 
+                    {{ personRoles | json }}
+            </li>
+        </ul>
+        <div>QUA: {{ person.data | json }}</div>
+        <div class="master-detail-caption">{{person.data.ID}}</div> 
+    </div>
+    
+    <dxo-paging [pageSize]="10"></dxo-paging>
+    <dxo-pager 
+        [showPageSizeSelector]="true"
+        [allowedPageSizes]="[5, 10, 20]"
+        [showInfo]="true">
+    </dxo-pager>
+</dx-data-grid>
+
+
 <br><br>
 <dx-data-grid
     id="gridContainer"
-    [dataSource]="customers"
-    [columns]="['ID', 'CompanyName', 'Phone', 'City', 'State']"
+    [dataSource]="dataSource"
     [showBorders]="true">
+    <dxo-paging [pageSize]="10"></dxo-paging>
+    <dxo-pager 
+        [showPageSizeSelector]="true"
+        [allowedPageSizes]="[5, 10, 20]"
+        [showInfo]="true">
+    </dxo-pager>
 </dx-data-grid>
+
+<br><br>
+<dx-data-grid
+    #grid
+    id="gridContainer"
+    [dataSource]="dataSource"
+    keyExpr="ID"
+    [hoverStateEnabled]="true"
+    [showBorders]="true"
+    [selectedRowKeys]="[]">
+    <dxo-selection mode="single"></dxo-selection>
+    
+    <dxo-paging [pageSize]="5"></dxo-paging>
+    <dxo-pager 
+        [showPageSizeSelector]="true"
+        [allowedPageSizes]="[5, 10, 20]"
+        [showInfo]="true">
+    </dxo-pager>
+</dx-data-grid>
+<div id="employeeInfo" *ngIf="grid.selectedRowKeys.length">
+    <p class="employeeNotes">{{grid.instance.getSelectedRowsData()[0].Full_Name}}</p>
+</div>
+
+
+<app-devextreme1 [articolo]="articolo" (titleEmitter)="mostraTitoloOutput($event)">Carica Componente DevExtreme TreeList</app-devextreme1>
+<br><br>
+<p>{{messaggioTrasmessoInOutput}}</p>
+<app-popup [name]="nameUser" [titolo]="TitoloDaAggiungereAlPopUp" [mostraMessaggio]=true></app-popup>
+<app-pop-up-material>loading</app-pop-up-material>
+<!--
+<br><br>
+<dx-data-grid
+    id="gridContainer"
+    [dataSource]="datiDevExpress"
+    [columns]="['Product_ID',    'Product_Name',    'Product_Cost',    'Product_Sale_Price',    'Product_Retail_Price',    'Product_Current_Inventory']"
+    [showBorders]="true">
+</dx-data-grid>-->
 

@@ -1,0 +1,41 @@
+<div *ngIf="mostraMessaggio">
+  
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">{{titolo}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="dateOfBirth">Date of birth of {{name}}</label>
+          <div class="input-group">
+            <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary fa fa-calendar" (click)="dp.toggle()" type="button"></button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">OK</button>
+    </div>
+  </ng-template>
+
+  <mat-chip-list>
+      <mat-chip>One fish</mat-chip>
+      <mat-chip>Two fish</mat-chip>
+      <mat-chip color="primary" selected>Primary fish</mat-chip>
+      <mat-chip color="accent" selected>Accent fish</mat-chip>
+    </mat-chip-list>
+  
+  <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Pulsante per aprire una modale di Bootstrap</button>
+  
+  <hr>
+  
+  <pre>{{closeResult}}</pre>
+
+</div>

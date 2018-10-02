@@ -1,4 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
+import DataSource from 'devextreme/data/data_source';
+import ODataStore from "devextreme/data/odata/store";
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import 'devextreme/data/odata/store';
+import CustomStore from 'devextreme/data/custom_store';
 
 
 export class Customer {
@@ -11,18 +16,29 @@ export class Customer {
   Phone: string;
   Fax: string;
   Website: string;
+  Tasks: any;
 }
 
-let customers: Customer[] = [{
+let customers: Customer[] = [
+  {
   "ID": 1,
-  "CompanyName": "Super Mart of the West",
+  "CompanyName": "ESEMPIO",
   "Address": "702 SW 8th Street",
   "City": "Bentonville",
   "State": "Arkansas",
   "Zipcode": 72716,
   "Phone": "(800) 555-2797",
   "Fax": "(800) 555-2171",
-  "Website": "http://www.nowebsitesupermart.com"
+  "Website": "http://www.nowebsitesupermart.com",
+  "Tasks": [{
+      "ID": 5,
+      "Subject": "Choose between PPO and HMO Health Plan",
+      "StartDate": "2013/02/15",
+      "DueDate": "2013/04/15",
+      "Status": "In Progress",
+      "Priority": "High",
+      "Completion": 75
+  }]
 }, {
   "ID": 2,
   "CompanyName": "Electronics Depot",
@@ -32,7 +48,16 @@ let customers: Customer[] = [{
   "Zipcode": 30339,
   "Phone": "(800) 595-3232",
   "Fax": "(800) 595-3231",
-  "Website": "http://www.nowebsitedepot.com"
+  "Website": "http://www.nowebsitedepot.com",
+  "Tasks": [{
+      "ID": 5,
+      "Subject": "Choose between PPO and HMO Health Plan",
+      "StartDate": "2013/02/15",
+      "DueDate": "2013/04/15",
+      "Status": "In Progress",
+      "Priority": "High",
+      "Completion": 75
+  }]
 }, {
   "ID": 3,
   "CompanyName": "K&S Music",
@@ -42,7 +67,16 @@ let customers: Customer[] = [{
   "Zipcode": 55403,
   "Phone": "(612) 304-6073",
   "Fax": "(612) 304-6074",
-  "Website": "http://www.nowebsitemusic.com"
+  "Website": "http://www.nowebsitemusic.com",
+  "Tasks": [{
+      "ID": 5,
+      "Subject": "Choose between PPO and HMO Health Plan",
+      "StartDate": "2013/02/15",
+      "DueDate": "2013/04/15",
+      "Status": "In Progress",
+      "Priority": "High",
+      "Completion": 75
+  }]
 }, {
   "ID": 4,
   "CompanyName": "Tom's Club",
@@ -52,7 +86,16 @@ let customers: Customer[] = [{
   "Zipcode": 98027,
   "Phone": "(800) 955-2292",
   "Fax": "(800) 955-2293",
-  "Website": "http://www.nowebsitetomsclub.com"
+  "Website": "http://www.nowebsitetomsclub.com",
+  "Tasks": [{
+      "ID": 5,
+      "Subject": "Choose between PPO and HMO Health Plan",
+      "StartDate": "2013/02/15",
+      "DueDate": "2013/04/15",
+      "Status": "In Progress",
+      "Priority": "High",
+      "Completion": 75
+  }]
 }, {
   "ID": 5,
   "CompanyName": "E-Mart",
@@ -62,7 +105,16 @@ let customers: Customer[] = [{
   "Zipcode": 60179,
   "Phone": "(847) 286-2500",
   "Fax": "(847) 286-2501",
-  "Website": "http://www.nowebsiteemart.com"
+  "Website": "http://www.nowebsiteemart.com",
+  "Tasks": [{
+      "ID": 5,
+      "Subject": "Choose between PPO and HMO Health Plan",
+      "StartDate": "2013/02/15",
+      "DueDate": "2013/04/15",
+      "Status": "In Progress",
+      "Priority": "High",
+      "Completion": 75
+  }]
 }, {
   "ID": 6,
   "CompanyName": "Walters",
@@ -72,7 +124,16 @@ let customers: Customer[] = [{
   "Zipcode": 60015,
   "Phone": "(847) 940-2500",
   "Fax": "(847) 940-2501",
-  "Website": "http://www.nowebsitewalters.com"
+  "Website": "http://www.nowebsitewalters.com",
+  "Tasks": [{
+      "ID": 5,
+      "Subject": "Choose between PPO and HMO Health Plan",
+      "StartDate": "2013/02/15",
+      "DueDate": "2013/04/15",
+      "Status": "In Progress",
+      "Priority": "High",
+      "Completion": 75
+  }]
 }, {
   "ID": 7,
   "CompanyName": "StereoShack",
@@ -82,7 +143,16 @@ let customers: Customer[] = [{
   "Zipcode": 76102,
   "Phone": "(817) 820-0741",
   "Fax": "(817) 820-0742",
-  "Website": "http://www.nowebsiteshack.com"
+  "Website": "http://www.nowebsiteshack.com",
+  "Tasks": [{
+      "ID": 5,
+      "Subject": "Choose between PPO and HMO Health Plan",
+      "StartDate": "2013/02/15",
+      "DueDate": "2013/04/15",
+      "Status": "In Progress",
+      "Priority": "High",
+      "Completion": 75
+  }]
 }, {
   "ID": 8,
   "CompanyName": "Circuit Town",
@@ -92,7 +162,16 @@ let customers: Customer[] = [{
   "Zipcode": 60523,
   "Phone": "(800) 955-2929",
   "Fax": "(800) 955-9392",
-  "Website": "http://www.nowebsitecircuittown.com"
+  "Website": "http://www.nowebsitecircuittown.com",
+  "Tasks": [{
+      "ID": 5,
+      "Subject": "Choose between PPO and HMO Health Plan",
+      "StartDate": "2013/02/15",
+      "DueDate": "2013/04/15",
+      "Status": "In Progress",
+      "Priority": "High",
+      "Completion": 75
+  }]
 }, {
   "ID": 9,
   "CompanyName": "Premier Buy",
@@ -102,7 +181,16 @@ let customers: Customer[] = [{
   "Zipcode": 55423,
   "Phone": "(612) 291-1000",
   "Fax": "(612) 291-2001",
-  "Website": "http://www.nowebsitepremierbuy.com"
+  "Website": "http://www.nowebsitepremierbuy.com",
+  "Tasks": [{
+      "ID": 5,
+      "Subject": "Choose between PPO and HMO Health Plan",
+      "StartDate": "2013/02/15",
+      "DueDate": "2013/04/15",
+      "Status": "In Progress",
+      "Priority": "High",
+      "Completion": 75
+  }]
 }, {
   "ID": 10,
   "CompanyName": "ElectrixMax",
@@ -112,7 +200,16 @@ let customers: Customer[] = [{
   "Zipcode": 60563,
   "Phone": "(630) 438-7800",
   "Fax": "(630) 438-7801",
-  "Website": "http://www.nowebsiteelectrixmax.com"
+  "Website": "http://www.nowebsiteelectrixmax.com",
+  "Tasks": [{
+      "ID": 5,
+      "Subject": "Choose between PPO and HMO Health Plan",
+      "StartDate": "2013/02/15",
+      "DueDate": "2013/04/15",
+      "Status": "In Progress",
+      "Priority": "High",
+      "Completion": 75
+  }]
 }, {
   "ID": 11,
   "CompanyName": "Video Emporium",
@@ -122,7 +219,16 @@ let customers: Customer[] = [{
   "Zipcode": 75270,
   "Phone": "(214) 854-3000",
   "Fax": "(214) 854-3001",
-  "Website": "http://www.nowebsitevideoemporium.com"
+  "Website": "http://www.nowebsitevideoemporium.com",
+  "Tasks": [{
+      "ID": 5,
+      "Subject": "Choose between PPO and HMO Health Plan",
+      "StartDate": "2013/02/15",
+      "DueDate": "2013/04/15",
+      "Status": "In Progress",
+      "Priority": "High",
+      "Completion": 75
+  }]
 }, {
   "ID": 12,
   "CompanyName": "Screen Shop",
@@ -132,426 +238,488 @@ let customers: Customer[] = [{
   "Zipcode": 28117,
   "Phone": "(800) 445-6937",
   "Fax": "(800) 445-6938",
-  "Website": "http://www.nowebsitescreenshop.com"
+  "Website": "http://www.nowebsitescreenshop.com",
+  "Tasks": [{
+      "ID": 5,
+      "Subject": "Choose between PPO and HMO Health Plan",
+      "StartDate": "2013/02/15",
+      "DueDate": "2013/04/15",
+      "Status": "In Progress",
+      "Priority": "High",
+      "Completion": 75
+  }]
 }];
 
 
 // ---------------------------------------------------------------------------------------
+
+export class Task {
+  ID: number;
+  Subject: string;
+  StartDate: string;
+  DueDate: string;
+  Status: string;
+  Priority: string;
+  Completion: number;
+}
 
 export class Employee {
   ID: number;
-  Head_ID: number;
-  Full_Name: string;
+  FirstName: string;
+  LastName: string;
   Prefix: string;
-  Title: string;
-  City: string;
+  Position: string;
+  Picture: string;
+  BirthDate: string;
+  HireDate: string;
+  Notes: string;
+  Address: string;
   State: string;
-  Email: string;
-  Skype: string;
-  Mobile_Phone: string;
-  Birth_Date: string;
-  Hire_Date: string;
+  City: string;
+  Tasks: Task[];
 }
 
-var employees: Employee[] = [{
+let employees: Employee[] = [
+  {
   "ID": 1,
-  "Head_ID": 0,
-  "Full_Name": "John Heart",
+  "FirstName": "John",
+  "LastName": "Heart",
   "Prefix": "Mr.",
-  "Title": "CEO",
-  "City": "Los Angeles",
+  "Position": "CEO",
+  "Picture": "images/employees/01.png",
+  "BirthDate": "1964/03/16",
+  "HireDate": "1995/01/15",
+  "Notes": "John has been in the Audio/Video industry since 1990. He has led DevAv as its CEO since 2003.\r\n\r\nWhen not working hard as the CEO, John loves to golf and bowl. He once bowled a perfect game of 300.",
+  "Address": "351 S Hill St.",
   "State": "California",
-  "Email": "jheart@dx-email.com",
-  "Skype": "jheart_DX_skype",
-  "Mobile_Phone": "(213) 555-9392",
-  "Birth_Date": "1964-03-16",
-  "Hire_Date": "1995-01-15"
+  "City": "Los Angeles",
+  "Tasks": [{
+      "ID": 5,
+      "Subject": "Choose between PPO and HMO Health Plan",
+      "StartDate": "2013/02/15",
+      "DueDate": "2013/04/15",
+      "Status": "In Progress",
+      "Priority": "High",
+      "Completion": 75
+  }, {
+      "ID": 6,
+      "Subject": "Google AdWords Strategy",
+      "StartDate": "2013/02/16",
+      "DueDate": "2013/02/28",
+      "Status": "Completed",
+      "Priority": "High",
+      "Completion": 100
+  }, {
+      "ID": 7,
+      "Subject": "New Brochures",
+      "StartDate": "2013/02/17",
+      "DueDate": "2013/02/24",
+      "Status": "Completed",
+      "Priority": "Normal",
+      "Completion": 100
+  }, {
+      "ID": 22,
+      "Subject": "Update NDA Agreement",
+      "StartDate": "2013/03/14",
+      "DueDate": "2013/03/16",
+      "Status": "Completed",
+      "Priority": "High",
+      "Completion": 100
+  }, {
+      "ID": 52,
+      "Subject": "Review Product Recall Report by Engineering Team",
+      "StartDate": "2013/05/17",
+      "DueDate": "2013/05/20",
+      "Status": "Completed",
+      "Priority": "High",
+      "Completion": 100
+  }]
 }, {
   "ID": 2,
-  "Head_ID": 1,
-  "Full_Name": "Samantha Bright",
-  "Prefix": "Dr.",
-  "Title": "COO",
-  "City": "Los Angeles",
+  "FirstName": "Olivia",
+  "LastName": "Peyton",
+  "Prefix": "Mrs.",
+  "Position": "Sales Assistant",
+  "Picture": "images/employees/09.png",
+  "BirthDate": "1981/06/03",
+  "HireDate": "2012/05/14",
+  "Notes": "Olivia loves to sell. She has been selling DevAV products since 2012. \r\n\r\nOlivia was homecoming queen in high school. She is expecting her first child in 6 months. Good Luck Olivia.",
+  "Address": "807 W Paseo Del Mar",
   "State": "California",
-  "Email": "samanthab@dx-email.com",
-  "Skype": "samanthab_DX_skype",
-  "Mobile_Phone": "(213) 555-2858",
-  "Birth_Date": "1966-05-02",
-  "Hire_Date": "2004-05-24"
+  "City": "Los Angeles",
+  "Tasks": [{
+      "ID": 3,
+      "Subject": "Update Personnel Files",
+      "StartDate": "2013/02/03",
+      "DueDate": "2013/02/28",
+      "Status": "Completed",
+      "Priority": "High",
+      "Completion": 100
+  }, {
+      "ID": 4,
+      "Subject": "Review Health Insurance Options Under the Affordable Care Act",
+      "StartDate": "2013/02/12",
+      "DueDate": "2013/04/25",
+      "Status": "In Progress",
+      "Priority": "High",
+      "Completion": 50
+  }, {
+      "ID": 21,
+      "Subject": "Non-Compete Agreements",
+      "StartDate": "2013/03/12",
+      "DueDate": "2013/03/14",
+      "Status": "Completed",
+      "Priority": "Low",
+      "Completion": 100
+  }, {
+      "ID": 50,
+      "Subject": "Give Final Approval for Refunds",
+      "StartDate": "2013/05/05",
+      "DueDate": "2013/05/15",
+      "Status": "Completed",
+      "Priority": "Normal",
+      "Completion": 100
+  }]
 }, {
   "ID": 3,
-  "Head_ID": 1,
-  "Full_Name": "Arthur Miller",
+  "FirstName": "Robert",
+  "LastName": "Reagan",
   "Prefix": "Mr.",
-  "Title": "CTO",
-  "City": "Denver",
-  "State": "Colorado",
-  "Email": "arthurm@dx-email.com",
-  "Skype": "arthurm_DX_skype",
-  "Mobile_Phone": "(310) 555-8583",
-  "Birth_Date": "1972-07-11",
-  "Hire_Date": "2007-12-18"
+  "Position": "CMO",
+  "Picture": "images/employees/03.png",
+  "BirthDate": "1974/09/07",
+  "HireDate": "2002/11/08",
+  "Notes": "Robert was recently voted the CMO of the year by CMO Magazine. He is a proud member of the DevAV Management Team.\r\n\r\nRobert is a championship BBQ chef, so when you get the chance ask him for his secret recipe.",
+  "Address": "4 Westmoreland Pl.",
+  "State": "Arkansas",
+  "City": "Bentonville",
+  "Tasks": [{
+      "ID": 16,
+      "Subject": "Deliver R&D Plans for 2013",
+      "StartDate": "2013/03/01",
+      "DueDate": "2013/03/10",
+      "Status": "Completed",
+      "Priority": "High",
+      "Completion": 100
+  }, {
+      "ID": 74,
+      "Subject": "Decide on Mobile Devices to Use in the Field",
+      "StartDate": "2013/07/30",
+      "DueDate": "2013/08/02",
+      "Status": "Completed",
+      "Priority": "High",
+      "Completion": 100
+  }, {
+      "ID": 78,
+      "Subject": "Try New Touch-Enabled WinForms Apps",
+      "StartDate": "2013/08/11",
+      "DueDate": "2013/08/15",
+      "Status": "Completed",
+      "Priority": "Normal",
+      "Completion": 100
+  }, {
+      "ID": 117,
+      "Subject": "Approval on Converting to New HDMI Specification",
+      "StartDate": "2014/01/11",
+      "DueDate": "2014/01/31",
+      "Status": "Deferred",
+      "Priority": "Normal",
+      "Completion": 75
+  }]
 }, {
   "ID": 4,
-  "Head_ID": 1,
-  "Full_Name": "Robert Reagan",
-  "Prefix": "Mr.",
-  "Title": "CMO",
-  "City": "Bentonville",
-  "State": "Arkansas",
-  "Email": "robertr@dx-email.com",
-  "Skype": "robertr_DX_skype",
-  "Mobile_Phone": "(818) 555-2387",
-  "Birth_Date": "1974-09-07",
-  "Hire_Date": "2002-11-08"
+  "FirstName": "Greta",
+  "LastName": "Sims",
+  "Prefix": "Ms.",
+  "Position": "HR Manager",
+  "Picture": "images/employees/04.png",
+  "BirthDate": "1977/11/22",
+  "HireDate": "1998/04/23",
+  "Notes": "Greta has been DevAV's HR Manager since 2003. She joined DevAV from Sonee Corp.\r\n\r\nGreta is currently training for the NYC marathon. Her best marathon time is 4 hours. Go Greta.",
+  "Address": "1700 S Grandview Dr.",
+  "State": "Georgia",
+  "City": "Atlanta",
+  "Tasks": [{
+      "ID": 20,
+      "Subject": "Approve Hiring of John Jeffers",
+      "StartDate": "2013/03/02",
+      "DueDate": "2013/03/12",
+      "Status": "Completed",
+      "Priority": "Normal",
+      "Completion": 100
+  }, {
+      "ID": 23,
+      "Subject": "Update Employee Files with New NDA",
+      "StartDate": "2013/03/16",
+      "DueDate": "2013/03/26",
+      "Status": "Need Assistance",
+      "Priority": "Normal",
+      "Completion": 90
+  }, {
+      "ID": 40,
+      "Subject": "Provide New Health Insurance Docs",
+      "StartDate": "2013/03/28",
+      "DueDate": "2013/04/07",
+      "Status": "Completed",
+      "Priority": "Normal",
+      "Completion": 100
+  }]
 }, {
   "ID": 5,
-  "Head_ID": 1,
-  "Full_Name": "Greta Sims",
-  "Prefix": "Ms.",
-  "Title": "HR Manager",
-  "City": "Atlanta",
-  "State": "Georgia",
-  "Email": "gretas@dx-email.com",
-  "Skype": "gretas_DX_skype",
-  "Mobile_Phone": "(818) 555-6546",
-  "Birth_Date": "1977-11-22",
-  "Hire_Date": "1998-04-23"
+  "FirstName": "Brett",
+  "LastName": "Wade",
+  "Prefix": "Mr.",
+  "Position": "IT Manager",
+  "Picture": "images/employees/05.png",
+  "BirthDate": "1968/12/01",
+  "HireDate": "2009/03/06",
+  "Notes": "Brett came to DevAv from Microsoft and has led our IT department since 2012.\r\n\r\nWhen he is not working hard for DevAV, he coaches Little League (he was a high school pitcher).",
+  "Address": "1120 Old Mill Rd.",
+  "State": "Idaho",
+  "City": "Boise",
+  "Tasks": [{
+      "ID": 2,
+      "Subject": "Prepare 3013 Marketing Plan",
+      "StartDate": "2013/01/01",
+      "DueDate": "2013/01/31",
+      "Status": "Completed",
+      "Priority": "High",
+      "Completion": 100
+  }, {
+      "ID": 11,
+      "Subject": "Rollout of New Website and Marketing Brochures",
+      "StartDate": "2013/02/20",
+      "DueDate": "2013/02/28",
+      "Status": "Completed",
+      "Priority": "High",
+      "Completion": 100
+  }, {
+      "ID": 15,
+      "Subject": "Review 2012 Sales Report and Approve 2013 Plans",
+      "StartDate": "2013/02/23",
+      "DueDate": "2013/02/28",
+      "Status": "Completed",
+      "Priority": "Normal",
+      "Completion": 100
+  }, {
+      "ID": 81,
+      "Subject": "Review Site Up-Time Report",
+      "StartDate": "2013/08/24",
+      "DueDate": "2013/08/30",
+      "Status": "Completed",
+      "Priority": "Urgent",
+      "Completion": 100
+  }]
 }, {
   "ID": 6,
-  "Head_ID": 3,
-  "Full_Name": "Brett Wade",
-  "Prefix": "Mr.",
-  "Title": "IT Manager",
-  "City": "Reno",
-  "State": "Nevada",
-  "Email": "brettw@dx-email.com",
-  "Skype": "brettw_DX_skype",
-  "Mobile_Phone": "(626) 555-0358",
-  "Birth_Date": "1968-12-01",
-  "Hire_Date": "2009-03-06"
+  "FirstName": "Sandra",
+  "LastName": "Johnson",
+  "Prefix": "Mrs.",
+  "Position": "Controller",
+  "Picture": "images/employees/06.png",
+  "BirthDate": "1974/11/15",
+  "HireDate": "2005/05/11",
+  "Notes": "Sandra is a CPA and has been our controller since 2008. She loves to interact with staff so if you've not met her, be certain to say hi.\r\n\r\nSandra has 2 daughters both of whom are accomplished gymnasts.",
+  "Address": "4600 N Virginia Rd.",
+  "State": "Utah",
+  "City": "Beaver",
+  "Tasks": [{
+      "ID": 20,
+      "Subject": "Approve Hiring of John Jeffers",
+      "StartDate": "2013/03/02",
+      "DueDate": "2013/03/12",
+      "Status": "Completed",
+      "Priority": "Normal",
+      "Completion": 100
+  }, {
+      "ID": 23,
+      "Subject": "Update Employee Files with New NDA",
+      "StartDate": "2013/03/16",
+      "DueDate": "2013/03/26",
+      "Status": "Need Assistance",
+      "Priority": "Normal",
+      "Completion": 90
+  }, {
+      "ID": 40,
+      "Subject": "Provide New Health Insurance Docs",
+      "StartDate": "2013/03/28",
+      "DueDate": "2013/04/07",
+      "Status": "Completed",
+      "Priority": "Normal",
+      "Completion": 100
+  }, {
+      "ID": 138,
+      "Subject": "Review HR Budget Company Wide",
+      "StartDate": "2014/03/20",
+      "DueDate": "2014/03/25",
+      "Status": "In Progress",
+      "Priority": "Normal",
+      "Completion": 40
+  }, {
+      "ID": 145,
+      "Subject": "Final Budget Review",
+      "StartDate": "2014/03/26",
+      "DueDate": "2014/03/27",
+      "Status": "In Progress",
+      "Priority": "High",
+      "Completion": 25
+  }]
 }, {
   "ID": 7,
-  "Head_ID": 5,
-  "Full_Name": "Sandra Johnson",
-  "Prefix": "Mrs.",
-  "Title": "Controller",
-  "City": "Beaver",
-  "State": "Utah",
-  "Email": "sandraj@dx-email.com",
-  "Skype": "sandraj_DX_skype",
-  "Mobile_Phone": "(562) 555-2082",
-  "Birth_Date": "1974-11-15",
-  "Hire_Date": "2005-05-11"
+  "FirstName": "Kevin",
+  "LastName": "Carter",
+  "Prefix": "Mr.",
+  "Position": "Shipping Manager",
+  "Picture": "images/employees/07.png",
+  "BirthDate": "1978/01/09",
+  "HireDate": "2009/08/11",
+  "Notes": "Kevin is our hard-working shipping manager and has been helping that department work like clockwork for 18 months.\r\n\r\nWhen not in the office, he is usually on the basketball court playing pick-up games.",
+  "Address": "424 N Main St.",
+  "State": "California",
+  "City": "San Diego",
+  "Tasks": [{
+      "ID": 24,
+      "Subject": "Sign Updated NDA",
+      "StartDate": "2013/03/20",
+      "DueDate": "2013/03/25",
+      "Status": "Completed",
+      "Priority": "Urgent",
+      "Completion": 100
+  }, {
+      "ID": 55,
+      "Subject": "Review Overtime Report",
+      "StartDate": "2013/06/10",
+      "DueDate": "2013/06/14",
+      "Status": "Completed",
+      "Priority": "Normal",
+      "Completion": 100
+  }, {
+      "ID": 71,
+      "Subject": "Upgrade Server Hardware",
+      "StartDate": "2013/07/22",
+      "DueDate": "2013/07/31",
+      "Status": "Completed",
+      "Priority": "Urgent",
+      "Completion": 100
+  }, {
+      "ID": 72,
+      "Subject": "Upgrade Personal Computers",
+      "StartDate": "2013/07/24",
+      "DueDate": "2014/04/30",
+      "Status": "In Progress",
+      "Priority": "Normal",
+      "Completion": 85
+  }]
 }, {
   "ID": 8,
-  "Head_ID": 4,
-  "Full_Name": "Ed Holmes",
-  "Prefix": "Dr.",
-  "Title": "Sales Manager",
-  "City": "Malibu",
-  "State": "California",
-  "Email": "edwardh@dx-email.com",
-  "Skype": "edwardh_DX_skype",
-  "Mobile_Phone": "(310) 555-1288",
-  "Birth_Date": "1973-07-14",
-  "Hire_Date": "2005-06-19"
+  "FirstName": "Cynthia",
+  "LastName": "Stanwick",
+  "Prefix": "Ms.",
+  "Position": "HR Assistant",
+  "Picture": "images/employees/08.png",
+  "BirthDate": "1985/06/05",
+  "HireDate": "2008/03/24",
+  "Notes": "Cindy joined us in 2008 and has been in the HR department for 2 years. \r\n\r\nShe was recently awarded employee of the month. Way to go Cindy!",
+  "Address": "2211 Bonita Dr.",
+  "State": "Arkansas",
+  "City": "Little Rock",
+  "Tasks": [{
+      "ID": 1,
+      "Subject": "Prepare 2013 Financial",
+      "StartDate": "2013/01/15",
+      "DueDate": "2013/01/31",
+      "Status": "Completed",
+      "Priority": "High",
+      "Completion": 100
+  }, {
+      "ID": 25,
+      "Subject": "Sign Updated NDA",
+      "StartDate": "2013/03/20",
+      "DueDate": "2013/03/25",
+      "Status": "Completed",
+      "Priority": "Urgent",
+      "Completion": 100
+  }, {
+      "ID": 35,
+      "Subject": "Update Revenue Projections",
+      "StartDate": "2013/03/24",
+      "DueDate": "2013/04/07",
+      "Status": "Completed",
+      "Priority": "Normal",
+      "Completion": 100
+  }, {
+      "ID": 99,
+      "Subject": "Submit D&B Number to ISP for Credit Approval",
+      "StartDate": "2013/11/04",
+      "DueDate": "2013/11/07",
+      "Status": "Completed",
+      "Priority": "High",
+      "Completion": 100
+  }]
 }, {
   "ID": 9,
-  "Head_ID": 3,
-  "Full_Name": "Barb Banks",
-  "Prefix": "Mrs.",
-  "Title": "Support Manager",
-  "City": "Phoenix",
-  "State": "Arizona",
-  "Email": "barbarab@dx-email.com",
-  "Skype": "barbarab_DX_skype",
-  "Mobile_Phone": "(310) 555-3355",
-  "Birth_Date": "1979-04-14",
-  "Hire_Date": "2002-08-07"
-}, {
-  "ID": 10,
-  "Head_ID": 2,
-  "Full_Name": "Kevin Carter",
-  "Prefix": "Mr.",
-  "Title": "Shipping Manager",
-  "City": "San Diego",
-  "State": "California",
-  "Email": "kevinc@dx-email.com",
-  "Skype": "kevinc_DX_skype",
-  "Mobile_Phone": "(213) 555-2840",
-  "Birth_Date": "1978-01-09",
-  "Hire_Date": "2009-08-11"
-}, {
-  "ID": 11,
-  "Head_ID": 5,
-  "Full_Name": "Cindy Stanwick",
-  "Prefix": "Ms.",
-  "Title": "HR Assistant",
-  "City": "Little Rock",
-  "State": "Arkansas",
-  "Email": "cindys@dx-email.com",
-  "Skype": "cindys_DX_skype",
-  "Mobile_Phone": "(818) 555-6655",
-  "Birth_Date": "1985-06-05",
-  "Hire_Date": "2008-03-24"
-}, {
-  "ID": 12,
-  "Head_ID": 8,
-  "Full_Name": "Sammy Hill",
-  "Prefix": "Mr.",
-  "Title": "Sales Assistant",
-  "City": "Pasadena",
-  "State": "California",
-  "Email": "sammyh@dx-email.com",
-  "Skype": "sammyh_DX_skype",
-  "Mobile_Phone": "(626) 555-7292",
-  "Birth_Date": "1984-02-17",
-  "Hire_Date": "2012-02-01"
-}, {
-  "ID": 13,
-  "Head_ID": 10,
-  "Full_Name": "Davey Jones",
-  "Prefix": "Mr.",
-  "Title": "Shipping Assistant",
-  "City": "Pasadena",
-  "State": "California",
-  "Email": "davidj@dx-email.com",
-  "Skype": "davidj_DX_skype",
-  "Mobile_Phone": "(626) 555-0281",
-  "Birth_Date": "1983-03-06",
-  "Hire_Date": "2011-04-24"
-}, {
-  "ID": 14,
-  "Head_ID": 10,
-  "Full_Name": "Victor Norris",
-  "Prefix": "Mr.",
-  "Title": "Shipping Assistant",
-  "City": "Little Rock",
-  "State": "Arkansas",
-  "Email": "victorn@dx-email.com",
-  "Skype": "victorn_DX_skype",
-  "Mobile_Phone": "(213) 555-9278",
-  "Birth_Date": "1986-07-23",
-  "Hire_Date": "2012-07-23"
-}, {
-  "ID": 15,
-  "Head_ID": 10,
-  "Full_Name": "Mary Stern",
-  "Prefix": "Ms.",
-  "Title": "Shipping Assistant",
-  "City": "Beaver",
-  "State": "Utah",
-  "Email": "marys@dx-email.com",
-  "Skype": "marys_DX_skype",
-  "Mobile_Phone": "(818) 555-7857",
-  "Birth_Date": "1982-04-08",
-  "Hire_Date": "2012-08-12"
-}, {
-  "ID": 16,
-  "Head_ID": 10,
-  "Full_Name": "Robin Cosworth",
-  "Prefix": "Mrs.",
-  "Title": "Shipping Assistant",
-  "City": "Los Angeles",
-  "State": "California",
-  "Email": "robinc@dx-email.com",
-  "Skype": "robinc_DX_skype",
-  "Mobile_Phone": "(818) 555-0942",
-  "Birth_Date": "1981-06-12",
-  "Hire_Date": "2012-09-01"
-}, {
-  "ID": 17,
-  "Head_ID": 9,
-  "Full_Name": "Kelly Rodriguez",
-  "Prefix": "Ms.",
-  "Title": "Support Assistant",
-  "City": "Boise",
-  "State": "Idaho",
-  "Email": "kellyr@dx-email.com",
-  "Skype": "kellyr_DX_skype",
-  "Mobile_Phone": "(818) 555-9248",
-  "Birth_Date": "1988-05-11",
-  "Hire_Date": "2012-10-13"
-}, {
-  "ID": 18,
-  "Head_ID": 9,
-  "Full_Name": "James Anderson",
-  "Prefix": "Mr.",
-  "Title": "Support Assistant",
-  "City": "Atlanta",
-  "State": "Georgia",
-  "Email": "jamesa@dx-email.com",
-  "Skype": "jamesa_DX_skype",
-  "Mobile_Phone": "(323) 555-4702",
-  "Birth_Date": "1987-01-29",
-  "Hire_Date": "2012-10-18"
-}, {
-  "ID": 19,
-  "Head_ID": 9,
-  "Full_Name": "Antony Remmen",
-  "Prefix": "Mr.",
-  "Title": "Support Assistant",
-  "City": "Boise",
-  "State": "Idaho",
-  "Email": "anthonyr@dx-email.com",
-  "Skype": "anthonyr_DX_skype",
-  "Mobile_Phone": "(310) 555-6625",
-  "Birth_Date": "1986-02-19",
-  "Hire_Date": "2013-01-19"
-}, {
-  "ID": 20,
-  "Head_ID": 8,
-  "Full_Name": "Olivia Peyton",
-  "Prefix": "Mrs.",
-  "Title": "Sales Assistant",
-  "City": "Atlanta",
-  "State": "Georgia",
-  "Email": "oliviap@dx-email.com",
-  "Skype": "oliviap_DX_skype",
-  "Mobile_Phone": "(310) 555-2728",
-  "Birth_Date": "1981-06-03",
-  "Hire_Date": "2012-05-14"
-}, {
-  "ID": 21,
-  "Head_ID": 6,
-  "Full_Name": "Taylor Riley",
-  "Prefix": "Mr.",
-  "Title": "Network Admin",
-  "City": "San Jose",
-  "State": "California",
-  "Email": "taylorr@dx-email.com",
-  "Skype": "taylorr_DX_skype",
-  "Mobile_Phone": "(310) 555-7276",
-  "Birth_Date": "1982-08-14",
-  "Hire_Date": "2012-04-14"
-}, {
-  "ID": 22,
-  "Head_ID": 6,
-  "Full_Name": "Amelia Harper",
-  "Prefix": "Mrs.",
-  "Title": "Network Admin",
-  "City": "Los Angeles",
-  "State": "California",
-  "Email": "ameliah@dx-email.com",
-  "Skype": "ameliah_DX_skype",
-  "Mobile_Phone": "(213) 555-4276",
-  "Birth_Date": "1983-11-19",
-  "Hire_Date": "2011-02-10"
-}, {
-  "ID": 23,
-  "Head_ID": 6,
-  "Full_Name": "Wally Hobbs",
-  "Prefix": "Mr.",
-  "Title": "Programmer",
-  "City": "Chatsworth",
-  "State": "California",
-  "Email": "wallyh@dx-email.com",
-  "Skype": "wallyh_DX_skype",
-  "Mobile_Phone": "(818) 555-8872",
-  "Birth_Date": "1984-12-24",
-  "Hire_Date": "2011-02-17"
-}, {
-  "ID": 24,
-  "Head_ID": 6,
-  "Full_Name": "Brad Jameson",
-  "Prefix": "Mr.",
-  "Title": "Programmer",
-  "City": "San Fernando",
-  "State": "California",
-  "Email": "bradleyj@dx-email.com",
-  "Skype": "bradleyj_DX_skype",
-  "Mobile_Phone": "(818) 555-4646",
-  "Birth_Date": "1988-10-12",
-  "Hire_Date": "2011-03-02"
-}, {
-  "ID": 25,
-  "Head_ID": 6,
-  "Full_Name": "Karen Goodson",
-  "Prefix": "Miss",
-  "Title": "Programmer",
-  "City": "South Pasadena",
-  "State": "California",
-  "Email": "kareng@dx-email.com",
-  "Skype": "kareng_DX_skype",
-  "Mobile_Phone": "(626) 555-0908",
-  "Birth_Date": "1987-04-26",
-  "Hire_Date": "2011-03-14"
-}, {
-  "ID": 26,
-  "Head_ID": 5,
-  "Full_Name": "Marcus Orbison",
-  "Prefix": "Mr.",
-  "Title": "Travel Coordinator",
-  "City": "Los Angeles",
-  "State": "California",
-  "Email": "marcuso@dx-email.com",
-  "Skype": "marcuso_DX_skype",
-  "Mobile_Phone": "(213) 555-7098",
-  "Birth_Date": "1982-03-02",
-  "Hire_Date": "2005-05-19"
-}, {
-  "ID": 27,
-  "Head_ID": 5,
-  "Full_Name": "Sandy Bright",
-  "Prefix": "Ms.",
-  "Title": "Benefits Coordinator",
-  "City": "Denver",
-  "State": "Colorado",
-  "Email": "sandrab@dx-email.com",
-  "Skype": "sandrab_DX_skype",
-  "Mobile_Phone": "(818) 555-0524",
-  "Birth_Date": "1983-09-11",
-  "Hire_Date": "2005-06-04"
-}, {
-  "ID": 28,
-  "Head_ID": 6,
-  "Full_Name": "Morgan Kennedy",
-  "Prefix": "Mrs.",
-  "Title": "Graphic Designer",
-  "City": "San Fernando Valley",
-  "State": "California",
-  "Email": "morgank@dx-email.com",
-  "Skype": "morgank_DX_skype",
-  "Mobile_Phone": "(818) 555-8238",
-  "Birth_Date": "1984-07-17",
-  "Hire_Date": "2012-01-11"
-}, {
-  "ID": 29,
-  "Head_ID": 28,
-  "Full_Name": "Violet Bailey",
-  "Prefix": "Ms.",
-  "Title": "Jr Graphic Designer",
-  "City": "La Canada",
-  "State": "California",
-  "Email": "violetb@dx-email.com",
-  "Skype": "violetb_DX_skype",
-  "Mobile_Phone": "(818) 555-2478",
-  "Birth_Date": "1985-06-10",
-  "Hire_Date": "2012-01-19"
-}, {
-  "ID": 30,
-  "Head_ID": 5,
-  "Full_Name": "Ken Samuelson",
+  "FirstName": "Kent",
+  "LastName": "Samuelson",
   "Prefix": "Dr.",
-  "Title": "Ombudsman",
-  "City": "St. Louis",
+  "Position": "Ombudsman",
+  "Picture": "images/employees/02.png",
+  "BirthDate": "1972/09/11",
+  "HireDate": "2009/04/22",
+  "Notes": "As our ombudsman, Kent is on the front-lines solving customer problems and helping our partners address issues out in the field.    He is a classically trained musician and is a member of the Chamber Orchestra.",
+  "Address": "12100 Mora Dr",
   "State": "Missouri",
-  "Email": "kents@dx-email.com",
-  "Skype": "kents_DX_skype",
-  "Mobile_Phone": "(562) 555-9282",
-  "Birth_Date": "1972-09-11",
-  "Hire_Date": "2009-04-22"
+  "City": "St. Louis",
+  "Tasks": [{
+      "ID": 12,
+      "Subject": "Update Sales Strategy Documents",
+      "StartDate": "2013/02/20",
+      "DueDate": "2013/02/22",
+      "Status": "Completed",
+      "Priority": "Normal",
+      "Completion": 100
+  }, {
+      "ID": 26,
+      "Subject": "Sign Updated NDA",
+      "StartDate": "2013/03/20",
+      "DueDate": "2013/03/25",
+      "Status": "Need Assistance",
+      "Priority": "Urgent",
+      "Completion": 25
+  }, {
+      "ID": 36,
+      "Subject": "Review Revenue Projections",
+      "StartDate": "2013/03/25",
+      "DueDate": "2013/04/06",
+      "Status": "Completed",
+      "Priority": "High",
+      "Completion": 100
+  }, {
+      "ID": 60,
+      "Subject": "Refund Request Template",
+      "StartDate": "2013/06/17",
+      "DueDate": "2014/04/01",
+      "Status": "Deferred",
+      "Priority": "Normal",
+      "Completion": 0
+  }]
 }];
 
 // ---------------------------------------------------------------------------------------
+  
+
+// ---------------------------------------------------------------------------------------
+
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class DevExtremeServiceService {
+  dataSource: any = {};
+  dataSourceObj: any = {};
+  private APIURLPeople:string = 'http://localhost:3000/people';
+  private APIURL = 'http://localhost:3000';
+  //@Output() JsonCompleto: EventEmitter<any> = new EventEmitter();
 
   getCustomers() {
     return customers;
@@ -560,5 +728,71 @@ export class DevExtremeServiceService {
   getEmployees(): Employee[] {
     return employees;
   }
+
+  getDataSource() {
+    //return new ODataStore({
+    return {
+      store: {
+          type: 'odata',
+          url: 'https://js.devexpress.com/Demos/DevAV/odata/Products'
+      },
+      select: [
+          'Product_ID',
+          'Product_Name',
+          'Product_Cost',
+          'Product_Sale_Price',
+          'Product_Retail_Price',
+          'Product_Current_Inventory'
+      ],
+      filter: ['Product_Current_Inventory', '>', 0]
+    }
+  }
+
+  getDataSource2() {
+    return this.dataSource;    
+  }
+
+
+
+  constructor (public http: HttpClient) {
+    
+    this.dataSource.store = new CustomStore({
+      load: function (loadOptions: any) {
   
+        var params = '?';
+  
+                params += 'skip=' + loadOptions.skip || 0;
+                params += '&take=' + loadOptions.take || 12;
+  
+                if(loadOptions.sort) {
+                    params += '&orderby=' + loadOptions.sort[0].selector;
+                    if(loadOptions.sort[0].desc) {
+                        params += ' desc';
+                    }
+                }
+          //console.log('http://localhost:3000/people' + params);
+  
+  
+          return http.get('http://localhost:3000/people')
+              .toPromise()
+              .then((data: any) => {
+                  //this.dataSourceObj = Object.assign(data);
+                  //this.getDataSource3(data);
+                  console.log("Service", data)
+                  return {
+                      data: data,
+                      totalCount: Object.keys(data).length
+                  }
+              })
+              .catch(error => { throw 'Data Loading Error' });
+          }
+      });
+  }
+
+  
+  getPeople() {
+    //return this.utenti;
+    return this.http.get('http://localhost:3000/people');
+  } 
+
 }
