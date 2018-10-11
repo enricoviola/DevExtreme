@@ -1,4 +1,77 @@
-/* You can add global styles to this file, and also import other style files */
+img {
+  vertical-align: baseline;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: 'Roboto', sans-serif; }
+.nav-yellow-top {
+  background-color: #FFBA00;
+  height: 8px;
+}
+
+.nav-blue-top {
+  background-color: #00A0D8;
+  height: 100px;
+}
+
+.logo {
+  padding: 10px 20px;
+  background-color: #F5F5F5;
+  display: block;
+  width: 50%;
+}
+
+.navbar {
+  height: 100px;
+  padding: 0;
+  -webkit-box-align: normal;
+      -ms-flex-align: normal;
+          align-items: normal;
+}
+
+.tyl-project-img {
+  margin-left: 16px;
+}
+
+.navbar-brand {
+  background-color: #F5F5F5;
+  width: 50%;
+  margin: 0;
+  padding: 0 0 0 24px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body {
+  background: #F5F5F5;
+}
+
+h1 {
+  color: red;
+}
+
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  border: 1px solid green;
+}
+
+.container p {
+  color: green;
+}
+
+.container p span {
+  color: yellow;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+html, body {
+  height: 100%;
+  background: #F5F5F5;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+/*# sourceMappingURL=styles.css.map */

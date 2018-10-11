@@ -58,5 +58,6 @@ export class AppComponent implements OnInit {
         return this.datiDaJsonTyl3 = risposta;
     }
   );
+  }
 
 }

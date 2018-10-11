@@ -21,13 +21,14 @@ import { Devextreme1Component } from './devextreme1/devextreme1.component';
 import { DxButtonModule, DxDataGridModule, DxTreeListModule } from 'devextreme-angular';
 import { PopupComponent } from './popup/popup.component';
 import { PopUpMaterialComponent, DialogMaterial } from './pop-up-material/pop-up-material.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     Devextreme1Component,
     PopupComponent,
-    PopUpMaterialComponent, DialogMaterial
+    PopUpMaterialComponent, DialogMaterial, NavbarComponent
   ],
   //The entryComponents array is used to define only components that are not found in html and created dynamically with ComponentFactoryResolver. Angular needs this suggerimento to find them and compile. All other components should just be listed in the declarations array.
   entryComponents: [DialogMaterial],

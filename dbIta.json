@@ -1,0 +1,322 @@
+{
+  "people": [
+        {
+        "id": 851967,
+        "Code": "ealbiero@buzziunicem.it",
+        "Name": "ELISA 0",
+        "Surname": "ALBIERO",
+        "Birth": "4/27/1981",
+        "PreferredName": "Mio Nome 0",
+        "MotherMaidenName": "",
+        "Frozened": false,
+        "Cancelled": true,
+        "PersonalInfo":
+            {     
+            "L_Type": "Risorsa esterna",
+            "L_Ragioni": "Risorsa esterna",
+            "L_Honorific": "Sig. ra",
+            "L_Gender": "femmina",
+            "L_Note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "L_Suffix": "",
+            "L_Ethnicity": ""
+            },
+        "Identifiers": [
+            {          
+            "ID": "gdid",
+            "L_Type": "",
+            "Value": "5471619",
+            "Counter": ""
+            }
+        ],
+        "Roles" : [
+                {                      
+                    "L_Role": "Membro di O.T.",
+                    "L_Relationship": "Membro",
+                "IDPartyInRelationship": 853625,
+                "PartyInRelationship": "UNI/CT 040/GL 01 - Servizi di consulenza e supporto gestionale alle imprese e organizzazioni",
+                "Represents": "116223 - ICF INTERNATIONAL COACH FEDERATION",
+                "Frozened": false,
+                "FrozenReason": ""
+                },
+                {                      
+                    "L_Role": "Membro di O.T.",
+                    "L_Relationship": "Membro",
+                "IDPartyInRelationship": 18545195,
+                "PartyInRelationship": "UNI/CT 040/GL 24 - Coaching",
+                "Represents": "116223 - ICF INTERNATIONAL COACH FEDERATION",
+                "Frozened": false,
+                "FrozenReason": ""
+                }
+            ],
+        "Address": [
+                {          
+                    "Type": "Office",
+                    "Address": "corso Garibaldi",
+                    "Nr": "45",
+                    "City": "Rome",
+                    "District": "",
+                    "ZIP": "",
+                    "Country": "Italy",
+                    "OtherInfoAddress": ""
+                }      
+            ],
+        "Telecom": [
+                {          
+                "Type": "Mobile",
+                "Address": "+39 333 1234567"
+                }      
+            ],
+        "Email": [
+                {          
+                "Type": "Office",
+                "Address": "roberta.pratoprevide@icloud.com"
+                }      
+            ],
+        "WebAddress": [
+                {          
+                "Type": "Web Site",
+                "Address": "http://www.esempio.com"
+                }      
+            ],
+        "Signatures": [
+                {          
+                "Date": "16-set-2015 15.35.57",
+                "Signer": "francesca.scotto@uni.com",
+                "SignerReason": "MODIFY"
+                },    
+                {          
+                "Date": "29-gen-2015 14.15.42",
+                "Signer": "mirella.marianacci@uni.com",
+                "SignerReason": "MODIFY"
+                },
+                {          
+                "Date": "18-giu-2013 10.02.06",
+                "Signer": "daniela.castaldini@uni.com",
+                "SignerReason": "CREATE"
+                }      
+            ]
+        },
+        {
+        "id": 10434236,
+        "Code": "michele.santato@geberit.com",
+        "Name": "MICHELE 1",
+        "Surname": "SANTATO",
+        "Birth": "1/27/1980",
+        "PreferredName": "Mio Nome 2",
+        "MotherMaidenName": "",
+        "Frozened": false,
+        "Cancelled": true,
+        "PersonalInfo":
+            {     
+                "L_Type": "Risorsa esterna",
+                "L_Ragioni": "Risorsa esterna",
+                "L_Honorific": "Sig. ra",
+                "L_Gender": "femmina",
+                "L_Note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "L_Suffix": "",
+                "L_Ethnicity": ""
+            },
+            "Identifiers": [
+                {          
+                "ID": "gdid",
+                "L_Type": "chiave primaria Global Directory ISO",
+                "Value": "5471619",
+                "Counter": "0"
+                }
+            ],
+            "Roles" : [
+                {                      
+                    "L_Role": "Membro di O.T.",
+                    "L_Relationship": "Membro",
+                    "IDPartyInRelationship": 853625,
+                    "PartyInRelationship": "UNI/CT 040/GL 01 - Servizi di consulenza e supporto gestionale alle imprese e organizzazioni",
+                    "Represents": "116223 - ICF INTERNATIONAL COACH FEDERATION",
+                    "Frozened": false,
+                    "FrozenReason": ""
+                },
+                {                      
+                    "L_Role": "Membro di O.T.",
+                    "L_Relationship": "Membro",
+                    "IDPartyInRelationship": 18545195,
+                    "PartyInRelationship": "UNI/CT 040/GL 24 - Coaching",
+                    "Represents": "116223 - ICF INTERNATIONAL COACH FEDERATION",
+                    "Frozened": false,
+                    "FrozenReason": ""
+                },
+                {                      
+                    "L_Role": "Membro di O.T.",
+                    "L_Relationship": "Funzionario tecnico",
+                    "IDPartyInRelationship": 853564,
+                    "PartyInRelationship": "UNI/CT 030/SC 01 - Impianti navali, sicurezza e protezione antincendio e mezzi di salvataggio",
+                    "Represents": "44984 - UNI Ente Nazionale Italiano di Unificazione",
+                    "Frozened": false,
+                    "FrozenReason": ""
+                },
+                {                      
+                    "L_Role": "Rappresentante",
+                    "L_Relationship": "Rappresenta",
+                    "IDPartyInRelationship": 18545195,
+                    "PartyInRelationship": "UNI/CT 040/GL 24 - Coaching",
+                    "Represents": "",
+                    "Frozened": false,
+                    "FrozenReason": ""
+                }
+            ],
+        "Address": [
+                {          
+                "Type": "Office",
+                "Address": "corso Garibaldi",
+                "Nr": "45",
+                "City": "Rome",
+                "District": "",
+                "ZIP": "",
+                "Country": "Italy",
+                "OtherInfoAddress": ""
+                }      
+            ],
+        "Telecom": [
+                {          
+                "Type": "Mobile",
+                "Address": "+39 333 1234567"
+                }      
+            ],
+        "Email": [
+                {          
+                "Type": "Office",
+                "Address": "roberta.pratoprevide@icloud.com"
+                }      
+            ],
+        "WebAddress": [
+                {          
+                "Type": "Web Site",
+                "Address": "http://www.esempio.com"
+                }      
+            ],
+        "Signatures": [
+                {          
+                "Date": "16-set-2015 15.35.57",
+                "Signer": "francesca.scotto@uni.com",
+                "SignerReason": "MODIFY"
+                },    
+                {          
+                "Date": "29-gen-2015 14.15.42",
+                "Signer": "mirella.marianacci@uni.com",
+                "SignerReason": "MODIFY"
+                },
+                {          
+                "Date": "18-giu-2013 10.02.06",
+                "Signer": "daniela.castaldini@uni.com",
+                "SignerReason": "CREATE"
+                }      
+            ]
+        }   
+    ],
+  "Organizations": [
+    {
+    "id": 871077,
+    "Type": "Azienda",
+    "Code": "01097",
+    "Name": "ENEL SPA",
+    "Description": "",
+    "Ragioni": "",
+    "Frozened": false,
+    "Cancelled": false,
+    "ToBeFreezed": false,
+    "PersonalInfo":
+        {     
+        "L_Type": "Risorsa esterna",
+        "L_Ragioni": "Risorsa esterna",
+        "L_Honorific": "Sig. ra",
+        "L_Gender": "femmina",
+        "L_Note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "L_Suffix": "",
+        "L_Ethnicity": ""
+        },
+    "Identifiers": [
+            {          
+            "ID": "CodFisc",
+            "L_Type": "Fiscal code",
+            "Value": "00811720580",
+            "Counter": "0"
+            },
+            {          
+            "ID": "PIva",
+            "L_Type": "Vat",
+            "Value": "00934061003",
+            "Counter": "0"
+            }
+        ],
+    "Roles" : [
+            {                      
+                "L_Role": "UNI Associate",
+                "L_Relationship": "Is represented by",
+            "IDPartyInRelationship": 35136579,
+            "PartyInRelationship": "BALDINI ALESSIO - alessio.baldini@enel.com",
+            "Represents": "",
+            "Frozened": false,
+            "FrozenReason": ""
+            },
+            {                      
+                "L_Role": "UNI Associate",
+                "L_Relationship": "Is represented by",
+            "IDPartyInRelationship": 851010,
+            "PartyInRelationship": "BIANCHI LUCA - luca.bianchi@enel.it",
+            "Represents": "",
+            "Frozened": false,
+            "FrozenReason": ""
+            }
+        ],
+    "Address": [
+            {          
+                "Type": "Office",
+                "Address": "V.LE REGINA MARGHERITA 137",
+                "Nr": "",
+                "City": "Rome",
+                "District": "RM",
+                "ZIP": "",
+                "Country": "Italy",
+                "OtherInfoAddress": ""
+            }      
+        ],
+    "Telecom": [
+            {          
+            "Type": "Fax",
+            "Address": "+39 0683053771"
+            },
+            {          
+            "Type": "Office telephone number",
+            "Address": "+39 0683057563"
+            }      
+        ],
+    "Email": [
+            {          
+            "Type": "Office",
+            "Address": "roberta.pratoprevide@icloud.com"
+            }      
+        ],
+    "WebAddress": [
+            {          
+            "Type": "Web Site",
+            "Address": "http://www.esempio.com"
+            }      
+        ],
+    "Signatures": [
+            {          
+            "Date": "16-set-2015 15.35.57",
+            "Signer": "francesca.scotto@uni.com",
+            "SignerReason": "MODIFY"
+            },    
+            {          
+            "Date": "29-gen-2015 14.15.42",
+            "Signer": "mirella.marianacci@uni.com",
+            "SignerReason": "MODIFY"
+            },
+            {          
+            "Date": "18-giu-2013 10.02.06",
+            "Signer": "daniela.castaldini@uni.com",
+            "SignerReason": "CREATE"
+            }      
+        ]
+    }
+  ]
+}
