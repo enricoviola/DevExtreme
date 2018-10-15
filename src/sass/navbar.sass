@@ -1,3 +1,5 @@
+@import './variables'
+
 img
     vertical-align: baseline
     
@@ -8,18 +10,38 @@ img
 .nav-blue-top
     background-color: $coloreBLu
     height: 100px
+    display: flex
+    max-width: 1280px
+    margin: 0 auto
 
 .logo
-    padding: 10px 20px
+    padding: 10px 24px
     background-color: $coloreBackgroundBody
-    display: block
     width: 50%
+    display: inline-block
 
 .tyl-project-img
     margin-left: 16px
 
 .menu
-    
+    width: 50%
+    height: 100px
+    display: inline-block
+    font-size: 0.85rem
+    text-transform: uppercase
+    text-rendering: optimizeLegibility
+    letter-spacing: $letterSpacingMenuUp
+    font-weight: bold
+    font-family: $fontFamilyMemuUp
+    color: #ffffff !important
+    font-weight: bold
+    font-style: normal
+    font-stretch: normal
+    text-align: right
+    align-items: center
+
+.menu a
+    cursor: pointer
 
 .navbar
     height: 100px
@@ -30,5 +52,108 @@ img
     background-color: $coloreBackgroundBody
     width: 50%
     margin: 0
-    padding: 0 0 0 24px
+    padding: 0 0 0 20px
     align-items: center
+
+.loginLogout
+    width: 88px !important
+    height: 40px
+    border-radius: 4px
+    border: solid 1px #ffffff
+    display: inline-block
+    align-self: center
+    margin-right: 24px
+    line-height: 40px
+    text-align: center
+
+.subject_menu_up
+    width: 88px !important
+    height: 100%
+    display: inline-block
+    align-self: center
+    margin-right: 120px
+    line-height: 100px
+    text-align: center
+
+.basics_menu_up
+    width: 88px !important
+    height: 100%
+    display: inline-block
+    align-self: center
+    margin-right: 16px
+    line-height: 100px
+    text-align: center
+    clear: both
+
+.subject_menu_up:hover, .basics_menu_up:hover
+    background-color: $coloreGiallo
+
+.svgObliqueMenu
+    width: 200px
+    height: 100px
+    float: left
+    background-color: $coloreBackgroundBody
+
+.oblique_menu_up
+    background-color: $coloreBackgroundBody
+    width: 200px
+    left: 0
+    overflow: hidden
+    height: 100px
+
+.oblique_menu_up:after
+    content: ""
+    display: block
+    background: $coloreBLu
+    height: 1000px
+    width: 8000px
+    position: relative
+    z-index: 1
+    bottom: -122%
+    left: 50%
+    margin-left: -4000px
+    -webkit-transform: rotate(-30deg)
+    transform: rotate(-30deg)
+    border: 8px solid #ffba00
+
+.nav-blue-bottom
+    background-color: $coloreBLu
+    height: 40px
+    display: flex
+    font-size: $fontSmall
+    line-height: 40px
+    color: #ffffff
+    max-width: 1280px
+    margin: 0 auto
+
+.nav-blue-bottom .nav-breadcrumb
+    margin-left: 24px
+
+.nav-blue-bottom .nav-blue-bottom_left
+    width: 50%
+
+.nav-blue-bottom .nav-blue-bottom_right
+    width: 50%
+    display: inline-block
+    text-align: right
+
+.nav-blue-bottom .baseline-arrow_right-24px
+  width: 10px
+  height: 5px
+  object-fit: contain
+  vertical-align: middle
+  margin-right: 24px
+
+.nav-blue-bottom .account_nav
+  margin-right: 16px
+
+.nav-blue-bottom .account_nav span
+        color: $coloreGiallo
+        font-weight: bold
+
+/* SUB MENU */
+body .mat-menu-content
+    padding-top: 0
+    background-color: red
+    button
+        width: 88px

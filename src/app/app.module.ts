@@ -11,6 +11,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material';
 import {MatButtonModule} from '@angular/material/button';
+import {MatMenuModule} from '@angular/material/menu';
 
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
@@ -45,6 +46,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatMenuModule,
     FormsModule 
   ],
   providers: [],

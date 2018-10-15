@@ -10,8 +10,15 @@ import { map } from 'rxjs/operators';
 export class NavbarComponent implements OnInit, OnDestroy {
   numeroObsSubsc: Subscription;
   customObsSubsc: Subscription;
+  loginLogout: string;
+  subject_menu_up: string;
+  basics_menu_up: string;
 
-  constructor() { }
+  constructor() {
+    this.loginLogout = "LOG IN";
+    this.subject_menu_up = "soggetti";
+    this.basics_menu_up = "basics";
+   }
 
   ngOnInit() {
     let numeri = interval(1000).pipe(map(
